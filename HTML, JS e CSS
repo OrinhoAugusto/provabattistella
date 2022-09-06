@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Índice de Massa Corporal</title>
+    <link rel="stylesheet" href="estilo.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="cont">
+            <div class="flex center row">
+                <div class="flex column tb">
+                    <h4>Peso (ex.: 65.2)</h4>
+                    <input id="peso" type="text" placeholder="Quilos">
+                </div>
+                <div class="flex column tb">
+                    <h4>Altura (ex.: 1,70)</h4>
+                    <input id="altura" type="text" placeholder="Metros">
+                </div>
+            </div>
+            <div class="flex center row">
+                <button class="btn limpar" onclick="limpar()"><span class="txt-limpar">Limpar</span></button>
+                <button class="btn calc" onclick="calc()">Calcular</button>
+            </div>
+            <div class="flex center row">
+                <input id="imc" type="number" disabled placeholder="IMC">
+            </div>
+            <div class="flex center row">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IMC</th>
+                            <th>CLASSIFICAÇÃO</th>
+                            <th class="cc">OBESIDADE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MENOR QUE 18.5</td>
+                            <td>MAGREZA</td>
+                            <td class="cc">0</td>
+                        </tr>
+                        <tr>
+                            <td>ENTRE 18.5 E 24.9</td>
+                            <td>NORMAL</td>
+                            <td class="cc">0</td>
+                        </tr>
+                        <tr>
+                            <td>ENTRE 25.0 E 29.9</td>
+                            <td>SOBREPESO</td>
+                            <td class="cc">I</td>
+                        </tr>
+                        <tr>
+                            <td>ENTRE 30.0 E 39.9</td>
+                            <td>OBESIDADE</td>
+                            <td class="cc">II</td>
+                        </tr>
+                        <tr>
+                            <td>MAIOR QUE 40.0</td>
+                            <td>OBESIDADE GRAVE</td>
+                            <td class="cc">III</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+
+let list = [];
+
+const calc = () => {
+    const peso = document.getElementById('peso');
+    const altura = document.getElementById('altura');
+    let p = parseFloat(peso.value);
+    let a = parseFloat(altura.value);
+    var res;
+    if (p && a) {
+        res = p / (a * a);
+
+        list.push(res);
+    }
+
+    document.getElementById("imc").value = Math.round(res*10)/10;
+
+    console.log(list)
+}
+
+const limpar = () => {
+    const peso = document.getElementById('peso');
+    const altura = document.getElementById('altura');
+    peso.value = "";
+    altura.value = "";
+    list = [];
+}
+
+
+
+
+div.container {
+    border: 2px solid darkblue;
+    border-radius: 50px;
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.flex {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.center {
+    justify-content: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.tb {
+    justify-content: space-evenly;
+    padding: 0px 5px;
+}
+
+h4 {
+    margin-bottom: 0px;
+    color: darkblue;
+}
+
+#peso {
+    width: 150px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#altura {
+    width: 150px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.cont {
+}
+
+#imc {
+    text-align: center;
+    width: 70%;
+    border-radius: 5px;
+}
+
+button.btn  {
+    color: rgb(255, 255, 255);
+    width: 160px;
+    height: 30px;
+    border-radius: 5px;
+    margin: 0px 5px 0px 5px;
+}
+
+.calc {
+    background-color: rgb(72, 72, 219);
+    border: 3px solid darkblue;
+}
+
+.limpar {
+    background-color: rgb(247, 247, 66);
+    border: 3px solid rgb(130, 139, 0);
+}
+
+.txt-limpar {
+    text-shadow: 1px 1px 2px rgb(49, 49, 49);
+}
+
+input {
+    height: 24px;
+    border: 2px solid rgb(65, 65, 240);
+}
+
+td {
+    border-bottom: 1px solid rgb(65, 65, 240);
+    padding: 5px;
+}
+
+table {
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+th {
+    border-bottom: 1px solid rgb(65, 65, 240);
+    background-color: rgb(65, 65, 240);
+    color: white;
+    padding: 5px 10px;
+}
+
+.cc {
+    text-align: center;
+}
